@@ -1,6 +1,9 @@
+import { useStore } from 'zustand'
 import Form from '../common/Form'
 import {useNavigate} from "react-router"
+import {Store} from "../common/Store"
 const Register = () => {
+    const {theme,toggle} = useStore(Store)
     const navigate = useNavigate()
     const formInputs = [
         {
@@ -52,14 +55,17 @@ const Register = () => {
     ]
 
     return (
-        <Form
+        <div className={`w-full pt-12 h-screen ${theme === "light" ? "bg-white" : "bg-zinc-500"}`}>
+            <Form
             image={{
                 url: "https://media.stockimg.ai/image/nWT8u_YOQjx5.png",
                 position: "right", style: "w-[450px]"
             }}
-            containerStyle='w-[850px] mt-12 mx-auto'
+            containerStyle='w-[850px]  mx-auto'
             formStyle="w-[400px] flex flex-col gap-5 border p-10 rounded-md"
             formInputs={formInputs} formButtons={formButtons} />
+        </div>
+        
     )
 }
 

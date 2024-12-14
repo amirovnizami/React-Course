@@ -1,6 +1,9 @@
+import { useStore } from "zustand"
 import Form from "../common/Form"
-import {useNavigate} from "react-router"
+import { useNavigate } from "react-router"
+import {Store} from "../common/Store"
 const Login = () => {
+    const {theme,toggle} = useStore(Store)
     const navigate = useNavigate()
     const formInputs = [
         {
@@ -34,7 +37,7 @@ const Login = () => {
         {
             title: "Don't have an account?",
             style: "text-blue-700",
-            action: () => { navigate("/register")}
+            action: () => { navigate("/register") }
         },
         {
             title: "Forgot password?",
@@ -43,13 +46,14 @@ const Login = () => {
         }
     ]
 
-
-
     return (
-        <Form image={{
-            url: "https://cdn.stocksnap.io/img-thumbs/280h/cliff-clouds_IZB4SE5SRJ.jpg",
-            position: "right", style: "w-[450px]"
-        }} containerStyle='w-[850px] mt-12 mx-auto' formStyle="w-[400px] flex flex-col gap-5 border p-10 rounded-md" formInputs={formInputs} formButtons={formButtons}/>
+        <div className= {`w-full pt-12 h-screen ${theme === "light" ? "bg-white" : "bg-zinc-500"}`}>
+            <Form image={{
+                url: "https://cdn.stocksnap.io/img-thumbs/280h/cliff-clouds_IZB4SE5SRJ.jpg",
+                position: "right", style: "w-[450px]"
+            }} containerStyle='w-[850px]  mx-auto' formStyle="w-[400px] flex flex-col gap-5 border p-10 rounded-md" formInputs={formInputs} formButtons={formButtons} />
+        </div>
+
     )
 }
 export default Login
