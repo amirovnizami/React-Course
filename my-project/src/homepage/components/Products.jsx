@@ -17,6 +17,7 @@ const Products = () =>{
         const data = await response.json()
 
         setProducts(data.products)
+        console.log(data)
     }
     useEffect(()=>{
         getProducts()
@@ -27,7 +28,9 @@ const Products = () =>{
             <SearchBar searchTerm = {searchTerm} setSearchTerm = {setSearchTerm}/>
             <div className="grid grid-cols-3 gap-10 p-10">
                 {products?.map((product,index) => <ProductCard key = {index} product =  {product}/>)}
-                {/* <button onClick={}></button> */}
+                <button onClick={()=>{
+                    setPageSize(prevState =>prevState+5)
+                }}className='text-white bg-red-500 px-5 py-3 w-fit col-span-3 justify-self-center' >View More</button>
             </div>
         </div>
     )
